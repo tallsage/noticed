@@ -10,16 +10,19 @@ import { CardActionArea, CardActions } from '@mui/material';
 
 function Noticed(props) {
 
-    const { deleteNoticed, state } = useContext(Context)
+    const { deleteNoticed } = useContext(Context)
 
     const handleDelete = () => {
-        state.noticed.findIndex(el => el.typography === props.key)
-        console.log(state.noticed.findIndex(el => el.typography === props.key));
-        // deleteNoticed()
+        deleteNoticed(props.id)
     }
 
+    const handleRewrite = () => {
+      props.setClick(true)
+      handleDelete()
+  }
+
     return (
-        <Card sx={{ width: 345, margin: 1, minHeight: 130 }}>
+        <Card sx={{ width: 345, margin: 1, minHeight: 130, border: 1 }}>
       <CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
@@ -36,12 +39,16 @@ function Noticed(props) {
         </Typography>
         {props.admin ? (
             <div>
+              <div>
                 <IconButton aria-label="delete" onClick={handleDelete}>
                     <DeleteIcon />
                 </IconButton>
-                <IconButton aria-label="rewrite">
+              </div>
+              <div>
+                <IconButton aria-label="rewrite" onClick={handleRewrite}>
                     <Create />
                 </IconButton>
+              </div>
             </div>
         ) : <></>}
         <Typography variant="body2" color="text.secondary" style={{marginLeft: '200px'}}>
@@ -56,7 +63,9 @@ Noticed.defaultProps = {
     typography: 'typography',
     text: 'text text text',
     counter: '3.141592',
-    date: '29-05-2013'
+    date: '29-05-2013', 
+    id: '1234',
+    admin: false
 }
 
 export default Noticed;

@@ -9,18 +9,19 @@ import s from './Admin.module.css'
 function Admin(props) {
 
     const [login, setLogin] = useState(false)
+    const [click, setClick] = useState(false)
 
     const { state } = useContext(Context)
 
     const getAllNoticed = () => {
         return state.noticed.map(el => 
-            <Noticed key={el.typography} text={el.text} date={el.date} counter={el.counter} typography={el.typography} admin={login}/>
+            <Noticed setClick={setClick} key={el.id} id={el.id} text={el.text} date={el.date} counter={el.counter} typography={el.typography} admin={login}/>
         )
     }
 
     return (
         <div className={s.main}>
-            {!login ? <SingIn setLogin={setLogin}/> : (<CreateNotice/>)}
+            {!login ? <SingIn setLogin={setLogin}/> : (<CreateNotice click={click} setClick={setClick}/>)}
             {!login ? <></> : (getAllNoticed())}
         </div>
     );

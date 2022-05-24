@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import {Context} from "../../render";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -23,7 +23,12 @@ function CreateNotice(props) {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const { updateStringTypography, updateStringText, updateStringCounter, updateStringDate, createN} = useContext(Context)
+    const { updateStringTypography, updateStringText, updateStringCounter, updateStringDate, createN, updateStringId, state} = useContext(Context)
+
+    useEffect(() =>{
+      handleOpen()
+      props.setClick(false)
+    }, [props.click])
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -32,12 +37,12 @@ function CreateNotice(props) {
           toLocaleString('en-us', {year: 'numeric', month: '2-digit', day: '2-digit'}).
           replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2');
 
-        createN()
         updateStringTypography(data.get('typography'))
         updateStringText(data.get('text'))
         updateStringCounter(0)
-        updateStringDate(now)        
-
+        updateStringDate(now)
+        updateStringId(state.noticed.length)
+        createN() 
     }
 
   return (

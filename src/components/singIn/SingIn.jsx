@@ -12,15 +12,17 @@ const theme = createTheme();
 
 function SingIn(props) {
 
+    console.log('login admin, pass 123');
+
     const { state } = useContext(Context)
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-        login: data.get('login'),
-        password: data.get('password'),
-        });
+        // console.log({
+        // login: data.get('login'),
+        // password: data.get('password'),
+        // });
 
         data.get('login') === state.admin.login ? 
             data.get('password') === state.admin.password ? props.setLogin(true) : console.log('try again') :

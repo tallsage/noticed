@@ -7,10 +7,11 @@ let state = {
     },
     noticed: [
         {
-            typography: '1',
-            text: '2',
-            counter: '3',
-            date: '4'
+            typography: 'zagolovok',
+            text: 'text',
+            counter: '0',
+            date: '20.05.2022',
+            id: '0'
         }
     ]
 }
@@ -20,13 +21,15 @@ export const createN = () => {
         typography: state.newTypography,
         text: state.newText,
         counter: state.newCounter,
-        date: state.newDate
+        date: state.newDate,
+        id: state.newId
     }
     state.noticed.push(newNoticed)
     state.newTypography = ''
     state.newText = ''
     state.newCounter = ''
     state.newDate = ''
+    state.newId = ''
 
     renderEntireTree(state)
 }
@@ -51,8 +54,13 @@ export const updateStringDate = (newText) => {
     renderEntireTree(state)
 }
 
+export const updateStringId = (newText) => {
+    state.newId = newText
+    renderEntireTree(state)
+}
+
 export const deleteNoticed = (index) => {
-    state.noticed.splice(index, 1)
+    state.noticed.length === index ? state.noticed.pop() : state.noticed.splice(index, 1)
     renderEntireTree(state)
 }
 
