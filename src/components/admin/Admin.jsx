@@ -4,6 +4,8 @@ import SingIn from '../singIn/SingIn';
 import Noticed from '../noticed/Noticed';
 import CreateNotice from '../createNotice/CreateNotice'
 import s from './Admin.module.css'
+import Button from '@mui/material/Button';
+import { NavLink } from "react-router-dom";
 
 
 function Admin(props) {
@@ -23,6 +25,9 @@ function Admin(props) {
         <div className={s.main}>
             {!login ? <SingIn setLogin={setLogin}/> : (<CreateNotice click={click} setClick={setClick}/>)}
             {!login ? <></> : (getAllNoticed())}
+            <NavLink to='/client'>
+                <Button variant="contained" className={s.nav}>КЛИЕНТ</Button>
+            </NavLink>
         </div>
     );
 }
