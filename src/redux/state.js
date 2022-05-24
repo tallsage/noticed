@@ -60,7 +60,8 @@ export const updateStringId = (newText) => {
 }
 
 export const deleteNoticed = (index) => {
-    state.noticed.length === index ? state.noticed.pop() : state.noticed.splice(index, 1)
+    var ind = state.noticed.findIndex( s => s.id === index )
+    state.noticed.splice(ind, 1)
     renderEntireTree(state)
 }
 

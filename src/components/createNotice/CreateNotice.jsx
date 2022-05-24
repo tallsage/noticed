@@ -20,6 +20,7 @@ const style = {
 
 function CreateNotice(props) {
     const [open, setOpen] = useState(false);
+    const [counter, setCount] = useState(1)
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
@@ -41,7 +42,8 @@ function CreateNotice(props) {
         updateStringText(data.get('text'))
         updateStringCounter(0)
         updateStringDate(now)
-        updateStringId(state.noticed.length)
+        updateStringId(counter)
+        setCount(counter+1)
         createN() 
     }
 
