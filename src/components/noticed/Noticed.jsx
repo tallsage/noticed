@@ -22,7 +22,7 @@ function Noticed(props) {
   }
 
     return (
-        <Card sx={{ width: 345, margin: 1, minHeight: 130, border: 1 }}>
+        <Card sx={{ width: 345, margin: 1, minHeight: 180, border: 1 }}>
       <CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
